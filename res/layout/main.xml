@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RadioGroup
+        android:id="@+id/radioGroupLabels"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp" >
+
+        <RadioButton
+            android:id="@+id/radioStanding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:checked="true"
+            android:text="@string/ui_collector_radio_standing_title" />
+
+        <RadioButton
+            android:id="@+id/radioWalking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/ui_collector_radio_walking_title" />
+
+        <RadioButton
+            android:id="@+id/radioRunning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/ui_collector_radio_running_title" />
+        
+         <RadioButton
+       		 android:id="@+id/radioOther"
+      	     android:layout_width="wrap_content"
+     	     android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:text="@string/ui_collector_radio_other_title" />
+
+    </RadioGroup>
+
+   
+
+    <Button
+        android:id="@+id/btnCollect"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="onCollectClicked"
+        android:text="@string/ui_collector_button_start_title" />
+
+    <Button
+        android:id="@+id/btnDeleteData"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="onDeleteDataClicked"
+        android:text="@string/ui_collector_button_delete_title" />
+
+    <Button
+        android:id="@+id/btnGo"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="onGoClicked"
+        android:text="@string/ui_collector_button_go_title" />
+
+</LinearLayout>

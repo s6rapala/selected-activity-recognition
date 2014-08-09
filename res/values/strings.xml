@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Collector</string>
+    <string name="ui_collector_radio_standing_title">Standing</string>
+    <string name="ui_collector_radio_walking_title">Walking</string>
+    <string name="ui_collector_radio_running_title">Running</string>
+    <string name="ui_collector_radio_other_title">Others</string>
+    <string name="ui_collector_button_start_title">Start collecting</string>
+    <string name="ui_collector_button_stop_title">Stop collecting</string>
+    <string name="ui_collector_button_delete_title">Delete Data</string>
+    <string name="ui_collector_toast_file_deleted">All files deleted.</string>
+    <string name="ui_sensor_service_notification_ticker">Collector started recording.</string>
+    <string name="ui_sensor_service_notification_title">MyRuns Collector</string>
+    <string name="ui_sensor_service_notification_content">Recording your activity data now</string>
+    <string name="ui_sensor_service_toast_success_file_updated">Data file updated.</string>
+    <string name="ui_sensor_service_toast_success_file_created">Data file created.</string>
+    <string name="ui_sensor_service_toast_error_file_saving_failed">Failed saving the file. Check your storage.</string>
+    <string name="ui_collector_button_go_title">Go</string>
+    <string name="title_activity_collect_and_classify">CollectAndClassify</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
