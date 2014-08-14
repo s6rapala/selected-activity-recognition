@@ -29,6 +29,7 @@ public abstract class Globals {
 	public static final String ACTION_MOTION_UPDATED = "MYRUNS_MOTION_UPDATED";
 
 	// For defining class labels in Classification stage
+	public final static String COLLECT_AND_CLASSIFY = "classify";	
 	public static final String CLASS_LABEL_KEY = "label";
 	public static final String CLASS_LABEL_STANDING = "standing";
 	public static final String CLASS_LABEL_WALKING = "walking";
@@ -43,10 +44,12 @@ public abstract class Globals {
 
 	// For storing real-time feature vectors into a file in external SD-card
 	public static final String FEATURE_FILE_NAME = "features.arff";
+	public static final String MODEL_FILE_NAME = "randomForest.model";
 	public static final String TRAINING_FILE_NAME = "trainingData.arff";
 	public static final String TEST_FILE_NAME = "testData.arff";
 	public static final String RAW_DATA_NAME = "raw_data.txt";
 	public static final String MATT_COR_COEFF = "matt_corr_coeff.txt";	
+	public static final String ON_THE_FLY_DATA_FILE = "onTheFlyDataFile.arff";
 
 	// Instances or feature vectors collected set to a capacity of 10,000
 	public static final int FEATURE_SET_CAPACITY = 10000;

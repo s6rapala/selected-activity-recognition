@@ -20,5 +20,9 @@
     <string name="title_activity_collect_and_classify">CollectAndClassify</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="ui_collector_toast_standing">Standing</string>
+    <string name="ui_collector_toast_walking">Walking</string>
+    <string name="ui_collector_toast_running">Running</string>
+    <string name="ui_collector_toast_others">Others</string>
 
 </resources>

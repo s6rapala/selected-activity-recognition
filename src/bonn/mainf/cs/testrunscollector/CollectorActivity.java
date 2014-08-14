@@ -19,7 +19,7 @@ import bonn.mainf.cs.testrunscollector.R;
  *
  */
 public class CollectorActivity extends Activity {
-	public final static String COLLECT_AND_CLASSIFY = "classify";
+
 	private enum State {
 		IDLE, COLLECTING, TRAINING, CLASSIFYING
 	};
@@ -103,8 +103,9 @@ public class CollectorActivity extends Activity {
 			
 			mServiceIntent = new Intent(this, CollectAndClassify.class);
 			Bundle extras = new Bundle();
-			extras.putInt(COLLECT_AND_CLASSIFY, Globals.SERVICE_TASK_TYPE_CLASSIFY);
-			startActivity(mServiceIntent,extras);
+			extras.putInt(Globals.COLLECT_AND_CLASSIFY, Globals.SERVICE_TASK_TYPE_CLASSIFY);
+			mServiceIntent.putExtras(extras);
+			startService(mServiceIntent);
 			
 			
 			

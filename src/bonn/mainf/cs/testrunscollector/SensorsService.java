@@ -2,7 +2,9 @@ package bonn.mainf.cs.testrunscollector;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,10 +13,15 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 
+import weka.attributeSelection.AttributeSelection;
+import weka.attributeSelection.InfoGainAttributeEval;
+import weka.attributeSelection.Ranker;
 import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.classifiers.bayes.NaiveBayesUpdateable;
+import weka.classifiers.meta.AttributeSelectedClassifier;
+import weka.classifiers.trees.RandomForest;
 import weka.core.Attribute;
 import weka.core.DenseInstance;
 import weka.core.Instance;
@@ -22,6 +29,7 @@ import weka.core.Instances;
 import weka.core.converters.ArffLoader;
 import weka.core.converters.ArffSaver;
 import weka.core.converters.ConverterUtils.DataSource;
+import weka.filters.Filter;
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.support.v4.app.NotificationCompat;
@@ -68,7 +76,8 @@ public class SensorsService extends Service implements SensorEventListener {
 	private OnSensorChangedTask mAsyncTask;
 	public float p,q,r;
 	public float[] last = {p,q,r};
-	public Classifier cModel = (Classifier) new NaiveBayes();
+	//public Classifier cModel = (Classifier) new NaiveBayes();
+	public RandomForest cModel = new RandomForest();
 
 	/*
 	 * mAccBuffer, this is a classic "bounded buffer", in 
@@ -367,6 +376,7 @@ public class SensorsService extends Service implements SensorEventListener {
 				e.printStackTrace();
 			}
 			
+			
 			boolean check = BuildTrainingAndTestData(mDataset);
 		//	boolean TestandTrainDataFileSaveCheck = TrainDataFileSave(); 
 		//	boolean TestDataFileSaveCheck = TestDataFileSave();
@@ -468,17 +478,49 @@ public class SensorsService extends Service implements SensorEventListener {
 //				return false;
 //			}
 //			return true;
+			//Instances data = new Instances(dataSet);
+			//dataSet.setClassIndex(data.numAttributes() - 1);
+			try {
+				useFilter(dataSet);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			//Instances newData = Filter.useFilter(data, filterAttribute);
 			
 			try {
-				Evaluation eval = new Evaluation(dataSet);
-				eval.crossValidateModel(cModel, dataSet, 10, new Random(1) );
-				eval.fMeasure(dataSet.classIndex());
+				dataSet.setClassIndex(dataSet.numAttributes() - 1);
+				cModel.buildClassifier(dataSet);
+				ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("/mnt/sdcard/Android/data/bonn.mainf.cs.testrunscollector/files/randomForest.model"));
+				oos.writeObject(cModel);
+				oos.flush();
+				oos.close();
+				//Evaluation eval = new Evaluation(dataSet);
+				//eval.crossValidateModel(cModel, dataSet, 10, new Random(1) );
+				//eval.fMeasure(dataSet.classIndex());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return true;
 	}
+
+		public void useFilter(Instances dataSet) throws Exception {
+			// TODO Auto-generated method stub
+			//AttributeSelection filterAttribute = new AttributeSelection();
+			InfoGainAttributeEval infoGain = new InfoGainAttributeEval();
+			Ranker rankerSearchMethod = new Ranker();
+			rankerSearchMethod.setNumToSelect(10);			
+			String [] optionsRanker = {"-T", "-1.7976931348623157E308", "-N" , "10"};
+			rankerSearchMethod.setOptions(optionsRanker);
+			//filterAttribute.setEvaluator(infoGain);
+			//filterAttribute.setSearch(rankerSearchMethod);
+			//filterAttribute.SelectAttributes(dataSet);
+//			Instances newData = Filter.useFilter(dataSet, filterAttribute);
+		}
+			
+			
+		
 
 		public Instances shuffleMainData(Instances dataset) {
 			// TODO Auto-generated method stub
